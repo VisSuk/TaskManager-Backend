@@ -8,7 +8,7 @@ const routes = require('./routes')
 
 
 const taskManagerServer = express()
-taskManagerServer.use(cors)
+taskManagerServer.use(cors())
 taskManagerServer.use(express.json())
 taskManagerServer.use(routes)
 
