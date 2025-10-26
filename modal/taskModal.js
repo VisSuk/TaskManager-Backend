@@ -16,7 +16,12 @@ const taskSchema = new mongoose.Schema({
     dueDate:{
         type:Date,
         required:true
+    },
+    creatorEmail:{
+        type:String,
+        required:true
     }
+
 })
 
 const tasks = mongoose.model("tasks", taskSchema)
