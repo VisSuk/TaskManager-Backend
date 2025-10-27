@@ -15,4 +15,6 @@ route.post('/createtask', jwt, taskController.createTaskController)
 
 route.get('/gettasks', jwt, taskController.getTasksController)
 
+route.get('/viewtask/:taskId', jwt, taskController.viewTaskController)
+
 module.exports = route

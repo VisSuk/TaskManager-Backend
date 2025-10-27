@@ -1,28 +1,28 @@
 const tasks = require("../modal/taskModal")
 
-exports.createTaskController = async(req, res) => {
+exports.createTaskController = async (req, res) => {
 
     console.log("inside create task controller")
     const userMail = req.payload
     // console.log(userMail)
-    const {title, description, priority, dueDate} = req.body
+    const { title, description, priority, dueDate } = req.body
     // console.log(title, description, priority, dueDate)
-    
-    try {
-        
-        const existingTask = await tasks.findOne({title, creatorEmail:userMail})
 
-        if(existingTask){
+    try {
+
+        const existingTask = await tasks.findOne({ title, creatorEmail: userMail })
+
+        if (existingTask) {
             res.status(406).json("Task Already Exists!")
         }
-        else{
+        else {
 
             const newTask = new tasks({
                 title,
                 description,
                 priority,
                 dueDate,
-                creatorEmail:userMail
+                creatorEmail: userMail
             })
             await newTask.save()
             res.status(200).json(newTask)
@@ -35,13 +35,13 @@ exports.createTaskController = async(req, res) => {
 
 }
 
-exports.getTasksController = async(req, res) => {
+exports.getTasksController = async (req, res) => {
 
     const userMail = req.payload
 
     try {
-        
-        const userTasks = await tasks.find({creatorEmail: userMail})
+
+        const userTasks = await tasks.find({ creatorEmail: userMail })
         res.status(200).json(userTasks)
 
     } catch (error) {
@@ -49,3 +49,18 @@ exports.getTasksController = async(req, res) => {
     }
 
 }
+
+exports.viewTaskController = async (req, res) => {
+
+    // console.log("Inside View Task Controller")
+    const { taskId } = req.params
+    // console.log(taskId)
+    try {
+        const existingTask = await tasks.findOne({ _id: taskId })
+        res.status(200).json(existingTask)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+
+
+} 
