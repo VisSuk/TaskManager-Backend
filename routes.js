@@ -17,4 +17,6 @@ route.get('/gettasks', jwt, taskController.getTasksController)
 
 route.get('/viewtask/:taskId', jwt, taskController.viewTaskController)
 
+route.put('/edittask/:taskId', jwt, taskController.editTaskController)
+
 module.exports = route

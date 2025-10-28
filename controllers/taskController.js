@@ -64,3 +64,26 @@ exports.viewTaskController = async (req, res) => {
 
 
 } 
+
+exports.editTaskController = async(req, res) => {
+
+    const {taskId} = req.params 
+    const {title, description, priority, taskStatus, dueDate} = req.body
+
+    try {
+        
+        const updatedPost = await tasks.findByIdAndUpdate(taskId, {
+            title,
+            description,
+            priority,
+            taskStatus,
+            dueDate
+        }, {new:true})
+
+        res.status(200).json(updatedPost)
+
+    } catch (error) {
+        res.status(500).json(error)
+    }
+
+}
