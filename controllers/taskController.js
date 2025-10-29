@@ -2,7 +2,7 @@ const tasks = require("../modal/taskModal")
 
 exports.createTaskController = async (req, res) => {
 
-    console.log("inside create task controller")
+    // console.log("inside create task controller")
     const userMail = req.payload
     // console.log(userMail)
     const { title, description, priority, dueDate } = req.body
@@ -90,7 +90,7 @@ exports.editTaskController = async(req, res) => {
 
 exports.deleteTaskController = async(req, res) => {
 
-    console.log("Inside Delete Task API")
+    // console.log("Inside Delete Task API")
     const {taskId} = req.params
     try {
         

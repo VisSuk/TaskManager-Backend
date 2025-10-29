@@ -3,8 +3,6 @@ const userController = require('./controllers/userController')
 const taskController = require('./controllers/taskController')
 
 const jwt = require('./middlewares/jwtMiddleware')
-const tasks = require('./modal/taskModal')
-
 
 const route = new express.Router()
 
