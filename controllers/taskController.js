@@ -87,3 +87,18 @@ exports.editTaskController = async(req, res) => {
     }
 
 }
+
+exports.deleteTaskController = async(req, res) => {
+
+    console.log("Inside Delete Task API")
+    const {taskId} = req.params
+    try {
+        
+        await tasks.findByIdAndDelete({_id:taskId})
+        res.status(200).json("Deleted")
+
+    } catch (error) {
+        res.status(500).json("Something went wrong")
+    }
+
+}
